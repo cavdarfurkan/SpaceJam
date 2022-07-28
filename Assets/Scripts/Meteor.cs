@@ -52,5 +52,7 @@ public class Meteor : MonoBehaviour
         Destroy(gameObject);
 
         expSystem.GetComponent<ExpSystem>().GrantXp(exp);
+        expSystem.GetComponent<ExpSystem>().setScore(exp);
+
     }
 }

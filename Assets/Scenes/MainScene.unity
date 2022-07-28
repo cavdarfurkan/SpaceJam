@@ -708,10 +708,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   xpBar: {fileID: 1689673509}
   player: {fileID: 1982801097}
-  levelText: {fileID: 44421299}
   level: 0
   maxXp: 0
   currentXp: 0
+  scoreText: {fileID: 1649282727}
+  levelText: {fileID: 44421299}
 --- !u!4 &642916065
 Transform:
   m_ObjectHideFlags: 0

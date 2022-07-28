@@ -7,15 +7,18 @@ public class ExpSystem : MonoBehaviour
 {
     public XpBar xpBar;
     public Player player;
-    [SerializeField]
-    private Text levelText;
 
     public int level;
     public int maxXp;
     public int currentXp;
+    private int score;
+
+    [SerializeField] private Text scoreText;
+    [SerializeField] private Text levelText;
 
     private void Start()
     {
+        score = 0;
         level = 1;
         currentXp = 0;
         maxXp = 10 * level;
@@ -24,6 +27,7 @@ public class ExpSystem : MonoBehaviour
         xpBar.SetValueXpBar(currentXp);
 
         levelText.text = "Lv." + level;
+        scoreText.text = score.ToString();
     }
 
     public void GrantXp(int xp)
@@ -49,6 +53,12 @@ public class ExpSystem : MonoBehaviour
         levelText.text = "Lv." + level;
 
         player.FullHeal();
+    }
+
+    public void setScore(int scorePoints)
+    {
+        score += scorePoints;        
+        scoreText.text = score.ToString();
     }
 
     // TODO: With leveling up, add new enemy types, by killing count accelerate the meteor speeds in game
