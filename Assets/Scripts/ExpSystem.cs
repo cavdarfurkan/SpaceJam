@@ -16,6 +16,15 @@ public class ExpSystem : MonoBehaviour
     [SerializeField] private Text scoreText;
     [SerializeField] private Text levelText;
 
+    /**
+    PlayerPrefs
+        level
+        levelHi
+        score
+        scoreHi
+        golds
+    **/
+
     private void Start()
     {
         score = 0;
@@ -28,6 +37,29 @@ public class ExpSystem : MonoBehaviour
 
         levelText.text = "Lv." + level;
         scoreText.text = score.ToString();
+    }
+
+    void OnDisable()
+    {
+        print("disabled");
+
+        PlayerPrefs.SetInt("level", level);
+        PlayerPrefs.SetInt("score", score);
+
+        compareHighestValues();
+    }
+
+    private void compareHighestValues()
+    {
+        if (PlayerPrefs.GetInt("level") > PlayerPrefs.GetInt("levelHi", 1))
+        {
+            PlayerPrefs.SetInt("levelHi", PlayerPrefs.GetInt("level"));
+        }
+
+        if (PlayerPrefs.GetInt("score") > PlayerPrefs.GetInt("scoreHi", 0))
+        {
+            PlayerPrefs.SetInt("scoreHi", PlayerPrefs.GetInt("score"));
+        }
     }
 
     public void GrantXp(int xp)
@@ -57,7 +89,7 @@ public class ExpSystem : MonoBehaviour
 
     public void setScore(int scorePoints)
     {
-        score += scorePoints;        
+        score += scorePoints;
         scoreText.text = score.ToString();
     }
 
