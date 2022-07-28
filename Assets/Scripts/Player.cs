@@ -59,6 +59,6 @@ public class Player : MonoBehaviour
         Destroy(gameObject);
 
         // Load GameOverScene
-        SceneManager.LoadScene("MenuScene");
+        SceneManager.LoadScene("GameOverScene");
     }
 }
