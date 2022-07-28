@@ -8,11 +8,6 @@ public class Buttons : MonoBehaviour
         SceneManager.LoadScene("MainScene");
     }
 
-    public void SkillsButtonOnClick()
-    {
-        //TODO
-    }
-
     public void SettingsButtonOnClick()
     {
         //TODO
