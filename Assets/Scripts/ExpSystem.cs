@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ExpSystem : MonoBehaviour
 {
     public XpBar xpBar;
     public Player player;
+    [SerializeField]
+    private Text levelText;
 
     public int level;
     public int maxXp;
@@ -19,6 +22,8 @@ public class ExpSystem : MonoBehaviour
 
         xpBar.SetMaxValueXpBar(maxXp);
         xpBar.SetValueXpBar(currentXp);
+
+        levelText.text = "Lv." + level;
     }
 
     public void GrantXp(int xp)
@@ -26,7 +31,7 @@ public class ExpSystem : MonoBehaviour
         currentXp += xp;
         xpBar.SetValueXpBar(currentXp);
 
-        if(currentXp >= maxXp)
+        if (currentXp >= maxXp)
         {
             LevelUp();
         }
@@ -40,6 +45,8 @@ public class ExpSystem : MonoBehaviour
 
         xpBar.SetValueXpBar(currentXp);
         xpBar.SetMaxValueXpBar(maxXp);
+
+        levelText.text = "Lv." + level;
 
         player.FullHeal();
     }
