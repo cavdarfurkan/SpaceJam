@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
+    public bool godMode;
+
     private bool isAlive;
 
     public int maxHealth;
@@ -28,7 +30,8 @@ public class Player : MonoBehaviour
 
         if (health <= 0)
         {
-            Die();
+            if(!godMode)
+                Die();
         }
     }
 
