@@ -52,7 +52,7 @@ public class LoadData : MonoBehaviour
     private async Task calculateAndSaveGold()
     {
         golds = PlayerPrefs.GetInt("golds", 0);
-        golds += (score / 10);
+        golds += level;
         PlayerPrefs.SetInt("golds", golds);
         await Task.Yield();
     }
