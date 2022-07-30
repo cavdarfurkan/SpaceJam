@@ -10,7 +10,7 @@ public class Buttons : MonoBehaviour
 
     public void SettingsButtonOnClick()
     {
-        //TODO
+        SceneManager.LoadScene("SettingsScene");
     }
 
     public void ExitButtonOnClick()
