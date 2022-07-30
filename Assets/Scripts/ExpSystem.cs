@@ -41,8 +41,6 @@ public class ExpSystem : MonoBehaviour
 
     void OnDisable()
     {
-        print("disabled");
-
         PlayerPrefs.SetInt("level", level);
         PlayerPrefs.SetInt("score", score);
 
