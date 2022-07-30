@@ -6,11 +6,26 @@ using System.Threading.Tasks;
 
 public class LoadData : MonoBehaviour
 {
+    // GameOver Scene Texts
     [SerializeField] private Text goldsText;
     [SerializeField] private Text scoreText;
     [SerializeField] private Text hiScoreText;
     [SerializeField] private Text levelText;
     [SerializeField] private Text hiLevelText;
+
+    // Upgrades Panel Texts
+    [Header("Upgrades Panel Texts")]
+    [SerializeField] private Text upgradeGoldsText;
+    [SerializeField] private Text upgradeBulletSpeedText;
+    [SerializeField] private Text upgradeBulletDamageText;
+    [SerializeField] private Text upgradeMovementSpeedText;
+    [SerializeField] private Text upgradeHealthPointText;
+
+    [Header("Costs Texts")]
+    [SerializeField] private Text upgradeBulletSpeedCostText;
+    [SerializeField] private Text upgradeBulletDamageCostText;
+    [SerializeField] private Text upgradeMovementSpeedCostText;
+    [SerializeField] private Text upgradeHealthPointCostText;
 
     private int level;
     private int hiLevel;
@@ -18,17 +33,27 @@ public class LoadData : MonoBehaviour
     private int hiScore;
     private int golds;
 
+    // Upgrades
+    private int bulletSpeed;
+    private int bulletDamage;
+    private int movementSpeed;
+    private int healthPoints;
+
+    // Upgrades Costs
+    private int bulletSpeedCost;
+    private int bulletDamageCost;
+    private int movementSpeedCost;
+    private int healthPointsCost;
+
+    [Header("Market Script")]
+    public Market market;
+
     void OnEnable()
     {
-        editUi();
+        updateUi();
     }
 
-    void Start()
-    {
-
-    }
-
-    private async void editUi()
+    public async void updateUi()
     {
         await loadData();
         scoreText.text = "Score: " + score;
@@ -38,6 +63,19 @@ public class LoadData : MonoBehaviour
 
         await calculateAndSaveGold();
         goldsText.text = "Golds: " + golds;
+
+        await loadUpgrades();
+        upgradeGoldsText.text = "Golds: " + golds;
+        upgradeBulletSpeedText.text = "Bullet Speed: " + bulletSpeed;
+        upgradeBulletDamageText.text = "Bullet Damage: " + bulletDamage;
+        upgradeMovementSpeedText.text = "Movement Speed: " + movementSpeed;
+        upgradeHealthPointText.text = "Health Points: " + healthPoints;
+
+        await loadCosts();
+        upgradeBulletSpeedCostText.text = "Cost: " + bulletSpeedCost;
+        upgradeBulletDamageCostText.text = "Cost: " + bulletDamageCost;
+        upgradeMovementSpeedCostText.text = "Cost: " + movementSpeedCost;
+        upgradeHealthPointCostText.text = "Cost: " + healthPointsCost;
     }
 
     private async Task loadData()
@@ -54,6 +92,26 @@ public class LoadData : MonoBehaviour
         golds = PlayerPrefs.GetInt("golds", 0);
         golds += (level > 1 ? level : 0);
         PlayerPrefs.SetInt("golds", golds);
+        await Task.Yield();
+    }
+
+    private async Task loadUpgrades()
+    {
+        bulletSpeed = PlayerPrefs.GetInt("bulletSpeed", 0);
+        bulletDamage = PlayerPrefs.GetInt("bulletDamage", 0);
+        movementSpeed = PlayerPrefs.GetInt("movementSpeed", 0);
+        healthPoints = PlayerPrefs.GetInt("healthPoints", 0);
+        await Task.Yield();
+    }
+
+    private async Task loadCosts()
+    {
+        await market.calculateCost();
+
+        bulletSpeedCost = PlayerPrefs.GetInt("bsCost");
+        bulletDamageCost = PlayerPrefs.GetInt("bdCost");
+        movementSpeedCost = PlayerPrefs.GetInt("msCost");
+        healthPointsCost = PlayerPrefs.GetInt("hpCost");
         await Task.Yield();
     }
 }
