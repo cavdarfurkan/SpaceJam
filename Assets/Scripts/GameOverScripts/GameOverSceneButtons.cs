@@ -1,5 +1,7 @@
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using UnityEngine;
+using System.Threading.Tasks;
 
 public class GameOverSceneButtons : MonoBehaviour
 {
@@ -7,6 +9,14 @@ public class GameOverSceneButtons : MonoBehaviour
     private Animator animator;
 
     private bool isActive;
+
+    public Market market;
+
+    // Upgrades
+    private int bulletSpeed;
+    private int bulletDamage;
+    private int movementSpeed;
+    private int healthPoints;
 
     void Start()
     {
@@ -30,6 +40,49 @@ public class GameOverSceneButtons : MonoBehaviour
     {
         isActive = !isActive;
         upgradesPanel.SetActive(isActive);
-        animator.SetBool("isEnabled", isActive);
+    }
+
+    public void BulletSpeedOnClick()
+    {
+        if (market.buy(PlayerPrefs.GetInt("bsCost")))
+        {
+            bulletSpeed = PlayerPrefs.GetInt("bulletSpeed", 0);
+            bulletSpeed += 1;
+            PlayerPrefs.SetInt("bulletSpeed", bulletSpeed);
+            market.InitAndUpdate();
+        }
+    }
+
+    public void BulletDamageOnClick()
+    {
+        if (market.buy(PlayerPrefs.GetInt("bdCost")))
+        {
+            bulletDamage = PlayerPrefs.GetInt("bulletDamage", 0);
+            bulletDamage += 1;
+            PlayerPrefs.SetInt("bulletDamage", bulletDamage);
+            market.InitAndUpdate();
+        }
+    }
+
+    public void MovementSpeedOnClick()
+    {
+        if (market.buy(PlayerPrefs.GetInt("msCost")))
+        {
+            movementSpeed = PlayerPrefs.GetInt("movementSpeed", 0);
+            movementSpeed += 1;
+            PlayerPrefs.SetInt("movementSpeed", movementSpeed);
+            market.InitAndUpdate();
+        }
+    }
+
+    public void HealthPointsOnClick()
+    {
+        if (market.buy(PlayerPrefs.GetInt("hpCost")))
+        {
+            healthPoints = PlayerPrefs.GetInt("healthPoints", 0);
+            healthPoints += 1;
+            PlayerPrefs.SetInt("healthPoints", healthPoints);
+            market.InitAndUpdate();
+        }
     }
 }
