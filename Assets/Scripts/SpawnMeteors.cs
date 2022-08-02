@@ -17,14 +17,12 @@ public class SpawnMeteors : MonoBehaviour
     private bool isSmallCoroutineExecuting = false;
     private bool isLargeCoroutineExecuting = false;
 
-    // Start is called before the first frame update
     void Start()
     {
         smallMeteorSpawnSpeed = 2.0f;
         largeMeteorSpawnSpeed = smallMeteorSpawnSpeed * 3.0f;
     }
 
-    // Update is called once per frame
     void Update()
     {
         StartCoroutine(SmallMeteorSpawner());

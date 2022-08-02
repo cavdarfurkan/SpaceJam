@@ -711,8 +711,10 @@ MonoBehaviour:
   level: 0
   maxXp: 0
   currentXp: 0
+  score: 0
   scoreText: {fileID: 1649282727}
   levelText: {fileID: 44421299}
+  spawnMeteors: {fileID: 1101697781}
 --- !u!4 &642916065
 Transform:
   m_ObjectHideFlags: 0

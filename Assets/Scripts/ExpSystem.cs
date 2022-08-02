@@ -11,19 +11,14 @@ public class ExpSystem : MonoBehaviour
     public int level;
     public int maxXp;
     public int currentXp;
-    private int score;
+    public int score;
+
+    private float score2 = 0;
 
     [SerializeField] private Text scoreText;
     [SerializeField] private Text levelText;
 
-    /**
-    PlayerPrefs
-        level
-        levelHi
-        score
-        scoreHi
-        golds
-    **/
+    public SpawnMeteors spawnMeteors;
 
     private void Start()
     {
@@ -89,9 +84,9 @@ public class ExpSystem : MonoBehaviour
     {
         score += scorePoints;
         scoreText.text = score.ToString();
-    }
 
-    // TODO: With leveling up, add new enemy types, by killing count accelerate the meteor speeds in game
-    // From market system, player can upgrade the ship with coins such as increasing shooting range, damage, bullet speed.
-    // From skill system, player can open up new skills with coin.
+        score2 += scorePoints;
+        spawnMeteors.smallMeteorSpawnSpeed = 2.0f - (score2 >= 175 ? (175.0f/100.0f) : (score2/100.0f));
+        spawnMeteors.largeMeteorSpawnSpeed = 6.0f - (score2 >= 575 ? (575.0f/100.0f) : (score2/100.0f));
+    }
 }
