@@ -31,13 +31,14 @@ public class Market : MonoBehaviour
     public async void InitAndUpdate()
     {
         Init();
-        loadDataScript.updateUi();
+        loadDataScript.updateUiWithoutGold();
 
         await Task.Yield();
     }
 
     public bool buy(int cost)
     {
+        Init();
         if (this.golds >= cost)
         {
             this.golds -= cost;

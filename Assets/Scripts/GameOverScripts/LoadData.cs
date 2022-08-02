@@ -84,6 +84,32 @@ public class LoadData : MonoBehaviour
         upgradeBulletRateCostText.text = "Cost: " + bulletRateCost;
     }
 
+    public async void updateUiWithoutGold()
+    {
+        await loadData();
+        scoreText.text = "Score: " + score;
+        hiScoreText.text = "Highest Score: " + hiScore;
+        levelText.text = "Level: " + level;
+        hiLevelText.text = "Highest Level: " + hiLevel;
+
+        goldsText.text = "Golds: " + PlayerPrefs.GetInt("golds", 0);
+
+        await loadUpgrades();
+        upgradeGoldsText.text = "Golds: " + PlayerPrefs.GetInt("golds", 0);
+        upgradeBulletSpeedText.text = "Bullet Speed: " + bulletSpeed;
+        upgradeBulletDamageText.text = "Bullet Damage: " + bulletDamage;
+        upgradeMovementSpeedText.text = "Movement Speed: " + movementSpeed;
+        upgradeHealthPointText.text = "Health Points: " + healthPoints;
+        upgradeBulletRateText.text = "Bullet Rate: " + bulletRate;
+
+        await loadCosts();
+        upgradeBulletSpeedCostText.text = "Cost: " + bulletSpeedCost;
+        upgradeBulletDamageCostText.text = "Cost: " + bulletDamageCost;
+        upgradeMovementSpeedCostText.text = "Cost: " + movementSpeedCost;
+        upgradeHealthPointCostText.text = "Cost: " + healthPointsCost;
+        upgradeBulletRateCostText.text = "Cost: " + bulletRateCost;
+    }
+
     private async Task loadData()
     {
         level = PlayerPrefs.GetInt("level", 1);
