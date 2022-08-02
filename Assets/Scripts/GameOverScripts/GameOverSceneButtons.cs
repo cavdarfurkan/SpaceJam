@@ -18,6 +18,8 @@ public class GameOverSceneButtons : MonoBehaviour
     private int movementSpeed;
     private int healthPoints;
 
+    private int maximumUpgradeLimit = 10;
+
     void Start()
     {
         this.isActive = this.upgradesPanel.activeInHierarchy;
@@ -44,45 +46,57 @@ public class GameOverSceneButtons : MonoBehaviour
 
     public void BulletSpeedOnClick()
     {
-        if (market.buy(PlayerPrefs.GetInt("bsCost")))
+        bulletSpeed = PlayerPrefs.GetInt("bulletSpeed", 0);
+        if (bulletSpeed < maximumUpgradeLimit)
         {
-            bulletSpeed = PlayerPrefs.GetInt("bulletSpeed", 0);
-            bulletSpeed += 1;
-            PlayerPrefs.SetInt("bulletSpeed", bulletSpeed);
-            market.InitAndUpdate();
+            if (market.buy(PlayerPrefs.GetInt("bsCost")))
+            {
+                bulletSpeed += 1;
+                PlayerPrefs.SetInt("bulletSpeed", bulletSpeed);
+                market.InitAndUpdate();
+            }
         }
     }
 
     public void BulletDamageOnClick()
     {
-        if (market.buy(PlayerPrefs.GetInt("bdCost")))
+        bulletDamage = PlayerPrefs.GetInt("bulletDamage", 0);
+        if (bulletDamage < maximumUpgradeLimit)
         {
-            bulletDamage = PlayerPrefs.GetInt("bulletDamage", 0);
-            bulletDamage += 1;
-            PlayerPrefs.SetInt("bulletDamage", bulletDamage);
-            market.InitAndUpdate();
+            if (market.buy(PlayerPrefs.GetInt("bdCost")))
+            {
+                bulletDamage += 1;
+                PlayerPrefs.SetInt("bulletDamage", bulletDamage);
+                market.InitAndUpdate();
+            }
         }
     }
 
     public void MovementSpeedOnClick()
     {
-        if (market.buy(PlayerPrefs.GetInt("msCost")))
+        movementSpeed = PlayerPrefs.GetInt("movementSpeed", 0);
+        if (movementSpeed < maximumUpgradeLimit)
         {
-            movementSpeed = PlayerPrefs.GetInt("movementSpeed", 0);
-            movementSpeed += 1;
-            PlayerPrefs.SetInt("movementSpeed", movementSpeed);
-            market.InitAndUpdate();
+            if (market.buy(PlayerPrefs.GetInt("msCost")))
+            {
+                movementSpeed += 1;
+                PlayerPrefs.SetInt("movementSpeed", movementSpeed);
+                market.InitAndUpdate();
+            }
         }
     }
 
     public void HealthPointsOnClick()
     {
-        if (market.buy(PlayerPrefs.GetInt("hpCost")))
+        healthPoints = PlayerPrefs.GetInt("healthPoints", 0);
+        if (healthPoints < maximumUpgradeLimit)
         {
-            healthPoints = PlayerPrefs.GetInt("healthPoints", 0);
-            healthPoints += 1;
-            PlayerPrefs.SetInt("healthPoints", healthPoints);
-            market.InitAndUpdate();
+            if (market.buy(PlayerPrefs.GetInt("hpCost")))
+            {
+                healthPoints += 1;
+                PlayerPrefs.SetInt("healthPoints", healthPoints);
+                market.InitAndUpdate();
+            }
         }
     }
 }
