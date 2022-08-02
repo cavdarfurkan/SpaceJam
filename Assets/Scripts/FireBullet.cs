@@ -15,8 +15,8 @@ public class FireBullet : MonoBehaviour
 
     void Start()
     {
-        bulletSpeed = 10.0f;
-        bulletDamage = 1;
+        bulletSpeed = 5.0f + (PlayerPrefs.GetInt("bulletSpeed", 0) * 5);
+        bulletDamage = 1 + PlayerPrefs.GetInt("bulletDamage", 0);
 
         rb = GetComponent<Rigidbody2D>();
 

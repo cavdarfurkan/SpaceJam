@@ -19,7 +19,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
-        moveSpeed = 10.0f;
+        moveSpeed = 5.0f + (PlayerPrefs.GetInt("movementSpeed", 0)*2);
         rb = GetComponent<Rigidbody2D>();
 
         animator = GetComponent<Animator>();

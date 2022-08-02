@@ -18,7 +18,7 @@ public class Player : MonoBehaviour
     {
         isAlive = true;
 
-        maxHealth = 100;
+        maxHealth = 100 + (PlayerPrefs.GetInt("healthPoints", 0)*10);
         health = maxHealth;
         healthBar.SetMaxHealthBarValue(health);
     }

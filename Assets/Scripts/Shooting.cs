@@ -12,7 +12,7 @@ public class Shooting : MonoBehaviour
 
     private void Start()
     {
-        shootRate = 1.0f;
+        shootRate = 1.0f + (PlayerPrefs.GetInt("bulletRate", 0) * 2);
     }
 
     void Update()
