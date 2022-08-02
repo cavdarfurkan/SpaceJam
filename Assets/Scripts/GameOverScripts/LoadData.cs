@@ -20,12 +20,14 @@ public class LoadData : MonoBehaviour
     [SerializeField] private Text upgradeBulletDamageText;
     [SerializeField] private Text upgradeMovementSpeedText;
     [SerializeField] private Text upgradeHealthPointText;
+    [SerializeField] private Text upgradeBulletRateText;
 
     [Header("Costs Texts")]
     [SerializeField] private Text upgradeBulletSpeedCostText;
     [SerializeField] private Text upgradeBulletDamageCostText;
     [SerializeField] private Text upgradeMovementSpeedCostText;
     [SerializeField] private Text upgradeHealthPointCostText;
+    [SerializeField] private Text upgradeBulletRateCostText;
 
     private int level;
     private int hiLevel;
@@ -38,12 +40,14 @@ public class LoadData : MonoBehaviour
     private int bulletDamage;
     private int movementSpeed;
     private int healthPoints;
+    private int bulletRate;
 
     // Upgrades Costs
     private int bulletSpeedCost;
     private int bulletDamageCost;
     private int movementSpeedCost;
     private int healthPointsCost;
+    private int bulletRateCost;
 
     [Header("Market Script")]
     public Market market;
@@ -70,12 +74,14 @@ public class LoadData : MonoBehaviour
         upgradeBulletDamageText.text = "Bullet Damage: " + bulletDamage;
         upgradeMovementSpeedText.text = "Movement Speed: " + movementSpeed;
         upgradeHealthPointText.text = "Health Points: " + healthPoints;
+        upgradeBulletRateText.text = "Bullet Rate: " + bulletRate;
 
         await loadCosts();
         upgradeBulletSpeedCostText.text = "Cost: " + bulletSpeedCost;
         upgradeBulletDamageCostText.text = "Cost: " + bulletDamageCost;
         upgradeMovementSpeedCostText.text = "Cost: " + movementSpeedCost;
         upgradeHealthPointCostText.text = "Cost: " + healthPointsCost;
+        upgradeBulletRateCostText.text = "Cost: " + bulletRateCost;
     }
 
     private async Task loadData()
@@ -101,6 +107,7 @@ public class LoadData : MonoBehaviour
         bulletDamage = PlayerPrefs.GetInt("bulletDamage", 0);
         movementSpeed = PlayerPrefs.GetInt("movementSpeed", 0);
         healthPoints = PlayerPrefs.GetInt("healthPoints", 0);
+        bulletRate = PlayerPrefs.GetInt("bulletRate", 0);
         await Task.Yield();
     }
 
@@ -112,6 +119,7 @@ public class LoadData : MonoBehaviour
         bulletDamageCost = PlayerPrefs.GetInt("bdCost");
         movementSpeedCost = PlayerPrefs.GetInt("msCost");
         healthPointsCost = PlayerPrefs.GetInt("hpCost");
+        bulletRateCost = PlayerPrefs.GetInt("brCost");
         await Task.Yield();
     }
 }

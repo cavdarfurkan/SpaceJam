@@ -17,6 +17,7 @@ public class GameOverSceneButtons : MonoBehaviour
     private int bulletDamage;
     private int movementSpeed;
     private int healthPoints;
+    private int bulletRate;
 
     private int maximumUpgradeLimit = 10;
 
@@ -95,6 +96,20 @@ public class GameOverSceneButtons : MonoBehaviour
             {
                 healthPoints += 1;
                 PlayerPrefs.SetInt("healthPoints", healthPoints);
+                market.InitAndUpdate();
+            }
+        }
+    }
+
+    public void BulletRateOnClick()
+    {
+        bulletRate = PlayerPrefs.GetInt("bulletRate", 0);
+        if (bulletRate < maximumUpgradeLimit)
+        {
+            if (market.buy(PlayerPrefs.GetInt("brCost")))
+            {
+                bulletRate += 1;
+                PlayerPrefs.SetInt("bulletRate", bulletRate);
                 market.InitAndUpdate();
             }
         }

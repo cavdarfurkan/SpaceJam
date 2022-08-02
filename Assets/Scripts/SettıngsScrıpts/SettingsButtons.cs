@@ -15,12 +15,14 @@ public class SettingsButtons : MonoBehaviour
     bulletDamage
     movementSpeed
     healthPoints
+    bulletRate
 
     golds
     bsCost
     bdCost
     msCost
     hpCost
+    brCost
     **/
 
     public GameObject ValidationPopup;

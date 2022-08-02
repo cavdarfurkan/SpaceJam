@@ -12,6 +12,7 @@ public class Market : MonoBehaviour
     private int bulletDamage;
     private int movementSpeed;
     private int healthPoints;
+    private int bulletRate;
 
     [Header("LoadData Script")]
     public LoadData loadDataScript;
@@ -70,6 +71,7 @@ public class Market : MonoBehaviour
         PlayerPrefs.SetInt("bdCost", ((int)Mathf.Pow(bulletDamage, 2)) + 10);
         PlayerPrefs.SetInt("msCost", ((int)Mathf.Pow(movementSpeed, 2)) + 10);
         PlayerPrefs.SetInt("hpCost", ((int)Mathf.Pow(healthPoints, 2)) + 10);
+        PlayerPrefs.SetInt("brCost", ((int)Mathf.Pow(bulletRate, 2)) + 10);
         await Task.Yield();
     }
 
@@ -86,6 +88,7 @@ public class Market : MonoBehaviour
         this.bulletDamage = PlayerPrefs.GetInt("bulletDamage", 0);
         this.movementSpeed = PlayerPrefs.GetInt("movementSpeed", 0);
         this.healthPoints = PlayerPrefs.GetInt("healthPoints", 0);
+        this.bulletRate = PlayerPrefs.GetInt("bulletRate", 0);
         await Task.Yield();
     }
 }
