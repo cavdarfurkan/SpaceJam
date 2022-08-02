@@ -23,14 +23,38 @@ public class SettingsButtons : MonoBehaviour
     hpCost
     **/
 
+    public GameObject ValidationPopup;
+    private bool isActive;
+
+    void Start()
+    {
+        this.isActive = this.ValidationPopup.activeInHierarchy;
+    }
+
     public void resetOnClick()
     {
-        PlayerPrefs.DeleteAll();
-        //Todo: Ask for validations
+        panelToggle();
     }
 
     public void backOnClick()
     {
         SceneManager.LoadScene("MenuScene");
+    }
+
+    public void yesButtonOnClick()
+    {
+        PlayerPrefs.DeleteAll();
+        panelToggle();
+    }
+
+    public void noButtonOnClick()
+    {
+        panelToggle();
+    }
+
+    private void panelToggle()
+    {
+        isActive = !isActive;
+        ValidationPopup.SetActive(isActive);
     }
 }
